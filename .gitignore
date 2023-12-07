@@ -5,7 +5,6 @@
 .project
 .classpath
 
-*.iml
 .DS_Store
 
 # The following files are generated/updated by vaadin-maven-plugin
