@@ -10,7 +10,6 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 
 @PageTitle("Dashboard")
@@ -21,7 +20,7 @@ public class Dashboard extends VerticalLayout {
         // Create Main View Layouts
         VerticalLayout viewLayout = new VerticalLayout();
         viewLayout.setAlignItems(Alignment.CENTER);
-        viewLayout.getElement().getThemeList().add(Lumo.DARK);
+        this.getElement().getThemeList().add(Lumo.DARK);
         viewLayout.setSizeFull();
 
         VerticalLayout mainLayout = new VerticalLayout();
@@ -40,12 +39,12 @@ public class Dashboard extends VerticalLayout {
 
         addTeamButton.addClickListener(e -> {
             AddTeamDialog addTeamDialog = new AddTeamDialog();
-            Dialog dialog = addTeamDialog.openTeamDialog();
+            addTeamDialog.openTeamDialog();
         });
 
         deleteTable.addClickListener(e -> {
             DeleteTableDialog deleteTableDialog = new DeleteTableDialog();
-            Dialog dialog = deleteTableDialog.openDeleteTableDialog();
+            deleteTableDialog.openDeleteTableDialog();
         });
 
 
@@ -134,7 +133,7 @@ public class Dashboard extends VerticalLayout {
         add(viewLayout);
     }
 
-    public static record Team(
+    public record Team(
             String name,
             int wins,
             int ties,
