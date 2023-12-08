@@ -1,7 +1,6 @@
 package org.vaadin.project;
 
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
@@ -20,7 +19,7 @@ public class Dashboard extends VerticalLayout {
         // Create Main View Layouts
         VerticalLayout viewLayout = new VerticalLayout();
         viewLayout.setAlignItems(Alignment.CENTER);
-        this.getElement().getThemeList().add(Lumo.DARK);
+        //this.getElement().getThemeList().add(Lumo.DARK);
         viewLayout.setSizeFull();
 
         VerticalLayout mainLayout = new VerticalLayout();
@@ -28,7 +27,19 @@ public class Dashboard extends VerticalLayout {
         mainLayout.setWidth("60%");
         viewLayout.add(mainLayout);
 
-       // Header
+        // Dark Mode Button with logic
+        Button themeButton = new Button("Dark Mode");
+        themeButton.addClickListener(e -> {
+            if (this.getElement().getThemeList().contains(Lumo.DARK)) {
+                this.getElement().getThemeList().remove(Lumo.DARK);
+                themeButton.setText("Dark Mode");
+            } else {
+                this.getElement().getThemeList().add(Lumo.DARK);
+                themeButton.setText("Light Mode");
+            }
+        });
+
+        // Header
         H1 header = new H1("Dashboard");
         mainLayout.add(header);
 
@@ -46,7 +57,6 @@ public class Dashboard extends VerticalLayout {
             DeleteTableDialog deleteTableDialog = new DeleteTableDialog();
             deleteTableDialog.openDeleteTableDialog();
         });
-
 
 
         topButtonsLayout.setWidth("96%");
@@ -130,7 +140,9 @@ public class Dashboard extends VerticalLayout {
 
         mainLayout.add(newsLayout);
         // Add to View
+        add(themeButton);
         add(viewLayout);
+        add(new Paragraph("Theme: " + getTheme()));
     }
 
     public record Team(
@@ -142,5 +154,21 @@ public class Dashboard extends VerticalLayout {
             int goalDifference,
             int points
     ) {
+    }
+
+
+    /**
+     * Returns the current theme of the dashboard
+     * 0 = Light Mode
+     * 1 = Dark Mode
+     */
+    public int getTheme() {
+        String dashboardTheme = Dashboard.this.getElement().getThemeList().contains(Lumo.DARK) ? "Dark Mode" : "Light Mode";
+
+        if (dashboardTheme.equals("Dark Mode")) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }
