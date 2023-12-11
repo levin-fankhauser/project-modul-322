@@ -1,4 +1,3 @@
-@import "theme-editor.css";
 /*
    CSS styling examples for the Vaadin app.
 
@@ -7,14 +6,14 @@
 
 /* Example: CSS class name to center align the content . */
 .centered-content {
-  margin: 0 auto;
-  max-width: 250px;
+    margin: 0 auto;
+    max-width: 250px;
 }
 
 /* Example: the style is applied only to the textfields which have the `bordered` class name. */
 vaadin-text-field.bordered::part(input-field) {
-  box-shadow: inset 0 0 0 1px var(--lumo-contrast-30pct);
-  background-color: var(--lumo-base-color);
+    box-shadow: inset 0 0 0 1px var(--lumo-contrast-30pct);
+    background-color: var(--lumo-base-color);
 }
 
 
