@@ -22,6 +22,7 @@ public class Dashboard extends VerticalLayout {
         viewLayout.setAlignItems(Alignment.CENTER);
         //this.getElement().getThemeList().add(Lumo.DARK);
         viewLayout.setSizeFull();
+        this.setClassName("viewStyle");
 
         VerticalLayout mainLayout = new VerticalLayout();
         mainLayout.setAlignItems(Alignment.CENTER);
@@ -98,6 +99,12 @@ public class Dashboard extends VerticalLayout {
         HorizontalLayout lowButtonsLayout = new HorizontalLayout();
         Button addGameButton = new Button("Spiel hinzufügen");
         Button modifyGameButton = new Button("Spiel bearbeiten");
+
+        addGameButton.addClickListener(e -> {
+            AddGameDialog addGameDialog = new AddGameDialog();
+            int theme = getTheme();
+            addGameDialog.openGameDialog(theme);
+        });
 
         lowButtonsLayout.setWidth("96%");
         lowButtonsLayout.setJustifyContentMode(JustifyContentMode.BETWEEN);

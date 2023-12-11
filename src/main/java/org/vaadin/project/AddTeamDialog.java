@@ -2,7 +2,7 @@ package org.vaadin.project;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
-import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
@@ -16,6 +16,7 @@ public class AddTeamDialog extends VerticalLayout {
         Dialog addTeamDialog = new Dialog();
         addTeamDialog.setWidth("50%");
         addTeamDialog.setHeightFull();
+        addTeamDialog.setClassName("viewStyle");
 
         // Create Main View Layouts
         VerticalLayout viewLayout = new VerticalLayout();
@@ -30,7 +31,7 @@ public class AddTeamDialog extends VerticalLayout {
 
         // Header
         HorizontalLayout headerLayout = new HorizontalLayout();
-        H2 header = new H2("Mannschaft hinzufügen");
+        H1 header = new H1("Mannschaft hinzufügen");
         headerLayout.setPadding(true);
 
         headerLayout.add(header);
@@ -110,7 +111,7 @@ public class AddTeamDialog extends VerticalLayout {
         buttonsLayout.add(cancelButton, saveButton);
         viewLayout.add(buttonsLayout);
 
-        // Add to View and open
+        // Add Layouts to View and open
         addTeamDialog.add(viewLayout);
 
         addTeamDialog.open();

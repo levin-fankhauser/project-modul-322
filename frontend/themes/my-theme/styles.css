@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
 /*
    CSS styling examples for the Vaadin app.
 
@@ -16,4 +18,35 @@ vaadin-text-field.bordered::part(input-field) {
     background-color: var(--lumo-base-color);
 }
 
+/* Own Styles */
 
+.viewStyle h1{
+    font-family: 'Comfortaa', sans-serif;
+    font-weight: bold;
+}
+
+.viewStyle h2{
+    font-family: 'Comfortaa', sans-serif;
+}
+
+.viewStyle p{
+    font-family: 'Geologica', sans-serif;
+}
+
+html {
+    --lumo-border-radius: calc(var(--lumo-size-m) / 2);
+    --lumo-primary-text-color: rgb(234, 132, 118);
+    --lumo-primary-color-50pct: rgba(234, 132, 118, 0.5);
+    --lumo-primary-color-10pct: rgba(234, 132, 118, 0.1);
+    --lumo-primary-color: hsl(7, 73%, 69%);
+    --lumo-shade: hsl(10, 35%, 15%);
+}
+[theme~="dark"] {
+    --lumo-base-color: hsl(10, 0%, 20%);
+    --lumo-primary-text-color: rgb(234, 132, 118);
+    --lumo-primary-color-50pct: rgba(234, 132, 118, 0.5);
+    --lumo-primary-color-10pct: rgba(234, 132, 118, 0.1);
+    --lumo-primary-color: hsl(7, 73%, 69%);
+    --lumo-shade: hsl(10, 35%, 15%);
+    --lumo-shade-5pct: rgba(153, 68, 51, 0.05);
+}
