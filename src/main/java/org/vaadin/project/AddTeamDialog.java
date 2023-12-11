@@ -6,11 +6,13 @@ import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.upload.Upload;
+import com.vaadin.flow.theme.lumo.Lumo;
 
 public class AddTeamDialog extends VerticalLayout {
-    public Dialog openTeamDialog () {
+    public void openTeamDialog(int theme) {
         Dialog addTeamDialog = new Dialog();
         addTeamDialog.setWidth("50%");
         addTeamDialog.setHeightFull();
@@ -19,10 +21,17 @@ public class AddTeamDialog extends VerticalLayout {
         VerticalLayout viewLayout = new VerticalLayout();
         viewLayout.setAlignItems(Alignment.CENTER);
 
+        // Dark Mode
+        if (theme == 1) {
+            addTeamDialog.getElement().getThemeList().add(Lumo.DARK);
+        } else {
+            addTeamDialog.getElement().getThemeList().remove(Lumo.DARK);
+        }
+
         // Header
         HorizontalLayout headerLayout = new HorizontalLayout();
         H2 header = new H2("Mannschaft hinzufügen");
-        headerLayout.setPadding(true);;
+        headerLayout.setPadding(true);
 
         headerLayout.add(header);
         viewLayout.add(headerLayout);
@@ -35,7 +44,7 @@ public class AddTeamDialog extends VerticalLayout {
         Upload upload = new Upload();
         upload.setUploadButton(new Button("Bild hochladen"));
 
-        TextField news = new TextField();
+        TextArea news = new TextArea();
         news.setLabel("News");
         news.setPlaceholder("z.B. Der Fc Basel hat...");
         news.setWidth("100%");
@@ -92,12 +101,8 @@ public class AddTeamDialog extends VerticalLayout {
         HorizontalLayout buttonsLayout = new HorizontalLayout();
         Button cancelButton = new Button("Abbrechen");
         Button saveButton = new Button("Speichern");
-        cancelButton.addClickListener(e -> {
-            addTeamDialog.close();
-        });
-        saveButton.addClickListener(e -> {
-            addTeamDialog.close();
-        });
+        cancelButton.addClickListener(e -> addTeamDialog.close());
+        saveButton.addClickListener(e -> addTeamDialog.close());
 
         buttonsLayout.setWidth("95%");
         buttonsLayout.setJustifyContentMode(JustifyContentMode.BETWEEN);
@@ -109,7 +114,6 @@ public class AddTeamDialog extends VerticalLayout {
         addTeamDialog.add(viewLayout);
 
         addTeamDialog.open();
-        return addTeamDialog;
     }
 
 }

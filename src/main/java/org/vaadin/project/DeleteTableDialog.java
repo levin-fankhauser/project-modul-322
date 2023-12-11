@@ -1,44 +1,23 @@
 package org.vaadin.project;
 
 
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.dialog.Dialog;
-import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
+import com.vaadin.flow.theme.lumo.Lumo;
 
 public class DeleteTableDialog {
-    public Dialog openDeleteTableDialog() {
-        Dialog deleteTableDialog = new Dialog();
+    public void openDeleteTableDialog(int theme) {
+        ConfirmDialog confirmDeleteDialog = new ConfirmDialog();
+        confirmDeleteDialog.setHeader("Tabelle wirklich löschen?");
+        confirmDeleteDialog.setConfirmButton("Ja", event -> confirmDeleteDialog.close());
+        confirmDeleteDialog.setCancelButton("Nein", event -> confirmDeleteDialog.close());
 
-        // Create Components
-        H2 header = new H2("Tabelle löschen?");
-        header.getStyle().set("padding-bottom", "20px");
+        // Dark Mode
+        if (theme == 1) {
+            confirmDeleteDialog.getElement().getThemeList().add(Lumo.DARK);
+        } else {
+            confirmDeleteDialog.getElement().getThemeList().remove(Lumo.DARK);
+        }
 
-
-        HorizontalLayout buttonLayout = new HorizontalLayout();
-        Button cancelButton = new Button("Nein");
-        cancelButton.getStyle().set("background", "#0FFF50");
-        cancelButton.getStyle().set("color", "black");
-
-        Button deleteButton = new Button("Ja");
-        deleteButton.getStyle().set("background", "red");
-        deleteButton.getStyle().set("color", "black");
-
-
-        cancelButton.addClickListener(e -> {
-            deleteTableDialog.close();
-        });
-        deleteButton.addClickListener(e -> {
-            deleteTableDialog.close();
-        });
-
-        buttonLayout.setWidth("100%");
-        buttonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
-        buttonLayout.add(cancelButton, deleteButton);
-
-        deleteTableDialog.add(header, buttonLayout);
-        deleteTableDialog.open();
-        return deleteTableDialog;
+        confirmDeleteDialog.open();
     }
 }

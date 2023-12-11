@@ -5,6 +5,7 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
@@ -12,7 +13,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.Lumo;
 
 @PageTitle("Dashboard")
-@Route
+@Route("")
 public class Dashboard extends VerticalLayout {
 
     public Dashboard() {
@@ -28,14 +29,14 @@ public class Dashboard extends VerticalLayout {
         viewLayout.add(mainLayout);
 
         // Dark Mode Button with logic
-        Button themeButton = new Button("Dark Mode");
+        Button themeButton = new Button(new Icon("vaadin", "moon-o"));
         themeButton.addClickListener(e -> {
             if (this.getElement().getThemeList().contains(Lumo.DARK)) {
                 this.getElement().getThemeList().remove(Lumo.DARK);
-                themeButton.setText("Dark Mode");
+                themeButton.setIcon(new Icon("vaadin", "moon-o"));
             } else {
                 this.getElement().getThemeList().add(Lumo.DARK);
-                themeButton.setText("Light Mode");
+                themeButton.setIcon(new Icon("vaadin", "moon"));
             }
         });
 
@@ -50,12 +51,14 @@ public class Dashboard extends VerticalLayout {
 
         addTeamButton.addClickListener(e -> {
             AddTeamDialog addTeamDialog = new AddTeamDialog();
-            addTeamDialog.openTeamDialog();
+            int theme = getTheme();
+            addTeamDialog.openTeamDialog(theme);
         });
 
         deleteTable.addClickListener(e -> {
             DeleteTableDialog deleteTableDialog = new DeleteTableDialog();
-            deleteTableDialog.openDeleteTableDialog();
+            int theme = getTheme();
+            deleteTableDialog.openDeleteTableDialog(theme);
         });
 
 
@@ -89,7 +92,6 @@ public class Dashboard extends VerticalLayout {
 
         table.setHeight("300px");
         gridLayout.add(tableHeader, table);
-        table.getStyle().set("border-radius", "10px");
         mainLayout.add(gridLayout);
 
         // Create Low Buttons
@@ -142,7 +144,6 @@ public class Dashboard extends VerticalLayout {
         // Add to View
         add(themeButton);
         add(viewLayout);
-        add(new Paragraph("Theme: " + getTheme()));
     }
 
     public record Team(
