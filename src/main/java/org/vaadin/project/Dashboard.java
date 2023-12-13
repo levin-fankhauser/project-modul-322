@@ -31,8 +31,9 @@ public class Dashboard extends VerticalLayout {
 
         // Dark Mode Button with logic
         Button themeButton = new Button(new Icon("vaadin", "moon-o"));
+        themeButton.addClassName("buttonStyle");
         themeButton.addClickListener(e -> {
-            if (this.getElement().getThemeList().contains(Lumo.DARK)) {
+            if (getTheme() == 1) {
                 this.getElement().getThemeList().remove(Lumo.DARK);
                 themeButton.setIcon(new Icon("vaadin", "moon-o"));
             } else {
@@ -43,12 +44,17 @@ public class Dashboard extends VerticalLayout {
 
         // Header
         H1 header = new H1("Dashboard");
+        header.getStyle().set("margin-bottom", "30px");
+        header.getStyle().set("font-size", "50px");
         mainLayout.add(header);
 
         // Create Top Buttons
         HorizontalLayout topButtonsLayout = new HorizontalLayout();
         Button addTeamButton = new Button("Mannschaft hinzufügen");
         Button deleteTable = new Button("Tabelle löschen");
+
+        addTeamButton.addClassName("buttonStyle");
+        deleteTable.addClassName("buttonStyle");
 
         addTeamButton.addClickListener(e -> {
             AddTeamDialog addTeamDialog = new AddTeamDialog();
@@ -63,7 +69,7 @@ public class Dashboard extends VerticalLayout {
         });
 
 
-        topButtonsLayout.setWidth("96%");
+        topButtonsLayout.setWidth("100%");
         topButtonsLayout.setJustifyContentMode(JustifyContentMode.BETWEEN);
 
         topButtonsLayout.add(addTeamButton, deleteTable);
@@ -92,6 +98,8 @@ public class Dashboard extends VerticalLayout {
         );
 
         table.setHeight("300px");
+        gridLayout.getStyle().set("margin", "30px 0");
+        gridLayout.setPadding(false);
         gridLayout.add(tableHeader, table);
         mainLayout.add(gridLayout);
 
@@ -100,13 +108,22 @@ public class Dashboard extends VerticalLayout {
         Button addGameButton = new Button("Spiel hinzufügen");
         Button modifyGameButton = new Button("Spiel bearbeiten");
 
+        addGameButton.addClassName("buttonStyle");
+        modifyGameButton.addClassName("buttonStyle");
+
         addGameButton.addClickListener(e -> {
             AddGameDialog addGameDialog = new AddGameDialog();
             int theme = getTheme();
-            addGameDialog.openGameDialog(theme);
+            addGameDialog.openAddGameDialog(theme);
         });
 
-        lowButtonsLayout.setWidth("96%");
+        modifyGameButton.addClickListener(e -> {
+            ModifyGameDialog modifyGameDialog = new ModifyGameDialog();
+            int theme = getTheme();
+            modifyGameDialog.openModifyGameDialog(theme);
+        });
+
+        lowButtonsLayout.setWidth("100%");
         lowButtonsLayout.setJustifyContentMode(JustifyContentMode.BETWEEN);
 
         lowButtonsLayout.add(addGameButton, modifyGameButton);
@@ -122,6 +139,7 @@ public class Dashboard extends VerticalLayout {
         Paragraph gameResult1 = new Paragraph("Fc Basel - Fc Zürich - 3:2");
         Paragraph gameResult2 = new Paragraph("Fc Luzern - Fc Sion - 1:3");
         Paragraph gameResult3 = new Paragraph("BSC Young Boys - Fc Thun - 1:1");
+        gameResultsLayout.addClassName("gameLayout");
         gameResultsLayout.add(resultsHeader, gameResult1, gameResult2, gameResult3);
 
         // Upcoming Games
@@ -129,6 +147,7 @@ public class Dashboard extends VerticalLayout {
         Paragraph upcomingGame1 = new Paragraph("Fc Basel - Fc Sion");
         Paragraph upcomingGame2 = new Paragraph("Fc Luzern - Fc Thun");
         Paragraph upcomingGame3 = new Paragraph("BSC Young Boys - Fc Zürich");
+        upcomingGamesLayout.addClassName("gameLayout");
         upcomingGamesLayout.add(upcomingGamesHeader, upcomingGame1, upcomingGame2, upcomingGame3);
 
         gamesLayout.setWidth("100%");
@@ -143,7 +162,7 @@ public class Dashboard extends VerticalLayout {
         H2 newsHeader = new H2("News");
         Paragraph news1 = new Paragraph("Fc Basel: Valentin Stocker trifft 3 mal gegen Zürich und bringt den Hattrick nach Hause!");
         Paragraph news2 = new Paragraph("Fc Zürich: Zürich schiesst 2 Tore gegen Basel und verliert knapp mit 2:3!");
-
+        newsLayout.addClassName("gameLayout");
 
         newsLayout.add(newsHeader, news1, news2);
 
@@ -171,12 +190,6 @@ public class Dashboard extends VerticalLayout {
      * 1 = Dark Mode
      */
     public int getTheme() {
-        String dashboardTheme = Dashboard.this.getElement().getThemeList().contains(Lumo.DARK) ? "Dark Mode" : "Light Mode";
-
-        if (dashboardTheme.equals("Dark Mode")) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return this.getElement().getThemeList().contains(Lumo.DARK) ? 1 : 0;
     }
 }

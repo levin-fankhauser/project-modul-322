@@ -20,20 +20,43 @@ vaadin-text-field.bordered::part(input-field) {
 
 /* Own Styles */
 
-.viewStyle h1{
+.viewStyle h1 {
     font-family: 'Comfortaa', sans-serif;
     font-weight: bold;
 }
 
-.viewStyle h2{
+.viewStyle h2 {
     font-family: 'Comfortaa', sans-serif;
 }
 
-.viewStyle p{
+.viewStyle p {
     font-family: 'Geologica', sans-serif;
 }
 
+.gameLayout {
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 0 10px hsl(10, 0%, 85%);
+}
+
+[theme~="dark"] .gameLayout {
+    box-shadow: 0 0 10px hsl(10, 0%, 30%)
+}
+
+.buttonStyle {
+    font-family: 'Geologica', sans-serif;
+    transition: transform 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease, color 0.5s ease;
+}
+
+.buttonStyle:hover {
+    transform: translate3d(1px, -2px, 0);
+    box-shadow: 0 0 3px hsl(10, 0%, 60%);
+    background-color: hsl(10, 0%, 60%);
+    color: white;
+}
+
 html {
+    --lumo-base-color: hsl(30, 95%, 97%);
     --lumo-border-radius: calc(var(--lumo-size-m) / 2);
     --lumo-primary-text-color: rgb(234, 132, 118);
     --lumo-primary-color-50pct: rgba(234, 132, 118, 0.5);
@@ -41,6 +64,7 @@ html {
     --lumo-primary-color: hsl(7, 73%, 69%);
     --lumo-shade: hsl(10, 35%, 15%);
 }
+
 [theme~="dark"] {
     --lumo-base-color: hsl(10, 0%, 20%);
     --lumo-primary-text-color: rgb(234, 132, 118);

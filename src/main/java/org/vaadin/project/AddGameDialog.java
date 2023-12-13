@@ -14,9 +14,9 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.theme.lumo.Lumo;
 
 public class AddGameDialog {
-    public void openGameDialog(int theme) {
+    public void openAddGameDialog(int theme) {
         Dialog addGameDialog = new Dialog();
-        addGameDialog.setWidth("50%");
+        addGameDialog.setWidth("55%");
         addGameDialog.setHeightFull();
         addGameDialog.setClassName("viewStyle");
 
@@ -52,10 +52,13 @@ public class AddGameDialog {
         passedGameLabelLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.BETWEEN);
 
         H3 passedGameLabelTeam1 = new H3("Mannschaft 1");
+        H3 passedGameLabelSymbol1 = new H3(":");
         H3 passedGameLabelTeam2 = new H3("Mannschaft 2");
+        H3 passedGameLabelSymbol2 = new H3("-");
         H3 passedGameLabelGoals1 = new H3("Tore 1");
+        H3 passedGameLabelSymbol3 = new H3(":");
         H3 passedGameLabelGoals2 = new H3("Tore 2");
-        passedGameLabelLayout.add(passedGameLabelTeam1, passedGameLabelTeam2, passedGameLabelGoals1, passedGameLabelGoals2);
+        passedGameLabelLayout.add(passedGameLabelTeam1, passedGameLabelSymbol1, passedGameLabelTeam2, passedGameLabelSymbol2, passedGameLabelGoals1, passedGameLabelSymbol3, passedGameLabelGoals2);
 
         HorizontalLayout passedGameInputLayout = new HorizontalLayout();
         passedGameInputLayout.setWidth("95%");
@@ -80,6 +83,7 @@ public class AddGameDialog {
         newPassedGameInputLayout.setPadding(false);
 
         Button newPassedGameInputButton = new Button(new Icon("vaadin", "plus"));
+        newPassedGameInputButton.addClassName("buttonStyle");
         newPassedGameInputButton.addClickListener(e -> newPassedGameInputLayout.add(newPassedGameInputLayout()));
 
         passedGameInputLayout.add(passedGameTextFieldTeam1, passedGameTextFieldTeam2, passedGameTextFieldGoals1, passedGameTextFieldGoals2);
@@ -120,6 +124,7 @@ public class AddGameDialog {
         newUpcomingGameInputLayout.setPadding(false);
 
         Button newUpcomingGameInputButton = new Button(new Icon("vaadin", "plus"));
+        newUpcomingGameInputButton.addClassName("buttonStyle");
         newUpcomingGameInputButton.addClickListener(e -> newUpcomingGameInputLayout.add(newUpcomingGameInputLayout()));
 
         upcomingGameInputLayout.add(upcomingGameTextFieldTeam1, upcomingGameTextFieldTeam2);
@@ -133,6 +138,9 @@ public class AddGameDialog {
         Button saveButton = new Button("Speichern");
         cancelButton.addClickListener(e -> addGameDialog.close());
         saveButton.addClickListener(e -> addGameDialog.close());
+
+        cancelButton.addClassName("buttonStyle");
+        saveButton.addClassName("buttonStyle");
 
         buttonsLayout.setWidth("100%");
         buttonsLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.BETWEEN);

@@ -43,7 +43,10 @@ public class AddTeamDialog extends VerticalLayout {
         firstLine.setJustifyContentMode(JustifyContentMode.BETWEEN);
 
         Upload upload = new Upload();
-        upload.setUploadButton(new Button("Bild hochladen"));
+        Button uploadButton = new Button("Bild hochladen");
+        uploadButton.addClassName("buttonStyle");
+
+        upload.setUploadButton(uploadButton);
 
         TextArea news = new TextArea();
         news.setLabel("News");
@@ -104,6 +107,9 @@ public class AddTeamDialog extends VerticalLayout {
         Button saveButton = new Button("Speichern");
         cancelButton.addClickListener(e -> addTeamDialog.close());
         saveButton.addClickListener(e -> addTeamDialog.close());
+
+        cancelButton.addClassName("buttonStyle");
+        saveButton.addClassName("buttonStyle");
 
         buttonsLayout.setWidth("95%");
         buttonsLayout.setJustifyContentMode(JustifyContentMode.BETWEEN);
