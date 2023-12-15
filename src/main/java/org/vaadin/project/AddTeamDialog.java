@@ -15,7 +15,7 @@ public class AddTeamDialog extends VerticalLayout {
     public void openTeamDialog(int theme) {
         Dialog addTeamDialog = new Dialog();
         addTeamDialog.setWidth("50%");
-        addTeamDialog.setHeightFull();
+        //addTeamDialog.setHeightFull();
         addTeamDialog.setClassName("viewStyle");
 
         // Create Main View Layouts

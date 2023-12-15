@@ -14,7 +14,7 @@ public class ModifyGameDialog {
     public void openModifyGameDialog(int theme) {
         Dialog modifyGameDialog = new Dialog();
         modifyGameDialog.setWidth("55%");
-        modifyGameDialog.setHeightFull();
+        //modifyGameDialog.setHeightFull();
         modifyGameDialog.setClassName("viewStyle");
 
         // Create Main View Layouts
@@ -295,6 +295,8 @@ public class ModifyGameDialog {
                 anwählen und speichern. Danach wird der Eintrag\s
                 geändert. Wenn "löschen" angewählt wird, wird das
                 Spiel nach dem speichern gelöscht!""");
+
+        infoLayout.setWidth("95%");
 
         infoLayout.add(info);
         viewLayout.add(infoLayout);

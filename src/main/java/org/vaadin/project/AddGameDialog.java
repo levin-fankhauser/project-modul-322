@@ -17,7 +17,7 @@ public class AddGameDialog {
     public void openAddGameDialog(int theme) {
         Dialog addGameDialog = new Dialog();
         addGameDialog.setWidth("55%");
-        addGameDialog.setHeightFull();
+        //addGameDialog.setHeightFull();
         addGameDialog.setClassName("viewStyle");
 
         // Create Main View Layouts
