@@ -10,6 +10,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.theme.lumo.Lumo;
 
 @PageTitle("Dashboard")
@@ -80,6 +81,7 @@ public class Dashboard extends VerticalLayout {
 
         H2 tableHeader = new H2("Tabelle");
         Grid<Team> table = new Grid<>();
+        table.addColumn(Team::rank).setHeader("Rang");
         table.addColumn(Team::name).setHeader("Name");
         table.addColumn(Team::wins).setHeader("Siege");
         table.addColumn(Team::ties).setHeader("Unentschieden");
@@ -89,15 +91,16 @@ public class Dashboard extends VerticalLayout {
         table.addColumn(Team::points).setHeader("Punkte");
 
         table.setItems(
-                new Team("Fc Basel", 10, 2, 3, 30, 20, 33),
-                new Team("Fc Zürich", 9, 3, 3, 25, 15, 30),
-                new Team("Fc Luzern", 8, 4, 3, 20, 10, 28),
-                new Team("Fc Sion", 7, 5, 3, 15, 5, 26),
-                new Team("Fc Thun", 6, 6, 3, 10, 0, 24),
-                new Team("BSC Young Boys", 5, 7, 3, 5, -5, 22)
+                new Team(1, "Fc Basel", 10, 2, 3, 30, 20, 33),
+                new Team(2, "Fc Zürich", 9, 3, 3, 25, 15, 30),
+                new Team(3, "Fc Luzern", 8, 4, 3, 20, 10, 28),
+                new Team(4, "Fc Sion", 7, 5, 3, 15, 5, 26),
+                new Team(5, "Fc Thun", 6, 6, 3, 10, 0, 24),
+                new Team(6, "BSC Young Boys", 5, 7, 3, 5, -5, 22)
         );
 
-        table.setHeight("300px");
+        table.getColumns().forEach(col -> col.setAutoWidth(true));
+        table.setHeight("280px");
         table.addClassName("tableStyle");
         gridLayout.getStyle().set("margin", "30px 0");
         gridLayout.setPadding(false);
@@ -144,7 +147,7 @@ public class Dashboard extends VerticalLayout {
         gameResultsLayout.add(resultsHeader, gameResult1, gameResult2, gameResult3);
 
         // Upcoming Games
-        H2 upcomingGamesHeader = new H2("Bevorstehende Spiele");
+        H2 upcomingGamesHeader = new H2("Spiele");
         Paragraph upcomingGame1 = new Paragraph("Fc Basel - Fc Sion");
         Paragraph upcomingGame2 = new Paragraph("Fc Luzern - Fc Thun");
         Paragraph upcomingGame3 = new Paragraph("BSC Young Boys - Fc Zürich");
@@ -171,9 +174,11 @@ public class Dashboard extends VerticalLayout {
         // Add to View
         add(themeButton);
         add(viewLayout);
+        add(new Button(new RouterLink("Testing", Testing.class)));
     }
 
     public record Team(
+            int rank,
             String name,
             int wins,
             int ties,
