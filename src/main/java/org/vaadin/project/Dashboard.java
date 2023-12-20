@@ -98,6 +98,7 @@ public class Dashboard extends VerticalLayout {
         );
 
         table.setHeight("300px");
+        table.addClassName("tableStyle");
         gridLayout.getStyle().set("margin", "30px 0");
         gridLayout.setPadding(false);
         gridLayout.add(tableHeader, table);

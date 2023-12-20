@@ -39,6 +39,14 @@ vaadin-text-field.bordered::part(input-field) {
     box-shadow: 0 0 10px hsl(10, 0%, 85%);
 }
 
+.tableStyle {
+    box-shadow: 0 0 10px hsl(10, 0%, 85%);
+}
+
+[theme~="dark"] .tableStyle {
+    box-shadow: 0 0 10px hsl(10, 0%, 30%)
+}
+
 [theme~="dark"] .gameLayout {
     box-shadow: 0 0 10px hsl(10, 0%, 30%)
 }
