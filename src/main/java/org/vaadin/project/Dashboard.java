@@ -10,7 +10,6 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.theme.lumo.Lumo;
 
 @PageTitle("Dashboard")
@@ -174,7 +173,6 @@ public class Dashboard extends VerticalLayout {
         // Add to View
         add(themeButton);
         add(viewLayout);
-        add(new Button(new RouterLink("Testing", Testing.class)));
     }
 
     public record Team(
